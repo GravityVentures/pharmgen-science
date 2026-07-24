@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>팜젠사이언스 × Gravity — 오픈이노베이션 펀드 제안</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root {
+  --bg:        #FBF8F4;
+  --bg2:       #F3EBE1;
+  --bg3:       #EADFD1;
+  --card:      #FFFFFF;
+  --border:    rgba(90,50,20,0.10);
+  --border-h:  rgba(90,50,20,0.20);
+  --text:      #241A12;
+  --muted:     #8A7565;
+  --faint:     #F1E7DA;
+  --g-teal:    #0E8A82;   /* Gravity 시그니처 */
+  --g-teal2:   #0A6961;
+  --g-glow:    rgba(14,138,130,0.12);
+  --g-glow2:   rgba(14,138,130,0.05);
+  --p-coral:   #D9622B;   /* 팜젠사이언스 시그니처 */
+  --p-coral2:  #B14C1E;
+  --p-glow:    rgba(217,98,43,0.10);
+  --accent:    #0E8A82;
+  --success:   #0E8A82;
+  --warn:      #B7791E;
+  --danger:    #C0392B;
+  --font-head: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --font-body: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --font-mono: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --max: 1160px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+/* ── NAV ───────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 900;
+  background: rgba(251,248,244,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center; gap: 0;
+  padding: 0 32px;
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 14px 0;
+  margin-right: 32px;
+  white-space: nowrap;
+}
+.nav-logo span.g { color: var(--g-teal); }
+.nav-logo span.x { color: var(--muted); margin: 0 6px; }
+.nav-logo span.a { color: var(--p-coral); }
+.nav-links {
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 5px;
+  padding: 14px 16px;
+  font-size: 12px; font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.nav-link .num {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--g-teal);
+  opacity: 0.6;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--p-coral);
+  border-bottom-color: var(--g-teal);
+}
+/* ── HERO ──────────────────────────── */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 88vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 32px 64px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 30%, rgba(14,138,130,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 20% 70%, rgba(217,98,43,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 50% 50%, rgba(14,138,130,0.04) 0%, transparent 50%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(90,50,20,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90,50,20,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+.hero-inner { max-width: var(--max); margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--g-teal);
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--g-teal);
+  animation: blink 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(38px, 5.6vw, 70px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #241A12;
+  margin-bottom: 20px;
+}
+.hero-title .accent { color: var(--g-teal); }
+.hero-title .accent2 { color: var(--p-coral); }
+.hero-sub {
+  font-size: 18px; font-weight: 300;
+  color: #8A7565;
+  margin-bottom: 48px;
+  max-width: 640px;
+  line-height: 1.6;
+}
+.hero-pills { display:flex; gap:10px; flex-wrap:wrap; }
+.hero-pill {
+  border:1px solid var(--border); background:#fff;
+  padding:8px 15px; border-radius:999px; font-size:12.5px; color:var(--muted); font-weight:500;
+  box-shadow:0 1px 3px rgba(90,50,20,0.05);
+}
+.scroll-hint {
+  position: absolute; bottom: 24px; right: 32px; z-index: 1;
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); letter-spacing: 0.08em;
+}
+.scroll-hint::before {
+  content: '';
+  display: block; width: 1px; height: 32px;
+  background: linear-gradient(to bottom, transparent, var(--p-coral));
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
+/* ── SECTIONS ──────────────────────── */
+.section {
+  padding: 80px 32px;
+  max-width: var(--max); margin: 0 auto;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section.vis { opacity: 1; transform: translateY(0); }
+.sec-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--g-teal); margin-bottom: 12px;
+}
+.sec-tag::before {
+  content: ''; display: block;
+  width: 24px; height: 1.5px;
+  background: var(--g-teal); border-radius: 99px;
+}
+.sec-title {
+  font-family: var(--font-head);
+  font-size: clamp(26px, 3.6vw, 40px);
+  font-weight: 800; letter-spacing: -0.025em;
+  color: var(--text); margin-bottom: 12px; line-height: 1.15;
+}
+.sec-desc {
+  font-size: 15px; color: var(--muted);
+  max-width: 560px; line-height: 1.75;
+}
+.divider {
+  height: 1px; max-width: var(--max); margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(90,50,20,0.12), transparent);
+}
+/* ── CARDS ─────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(90,50,20,0.05);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { border-color: var(--border-h); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(90,50,20,0.09); }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.g-12 { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+.card-title {
+  font-family: var(--font-head);
+  font-size: 16px; font-weight: 700; color: var(--text);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.card-title::before {
+  content: ''; display: block;
+  width: 3px; height: 16px;
+  background: var(--g-teal); border-radius: 99px;
+}
+.card-title.coral::before { background: var(--p-coral); }
+/* ── STAT BLOCKS ───────────────────── */
+.stat-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  box-shadow: 0 1px 4px rgba(90,50,20,0.05);
+  position: relative; overflow: hidden; text-align:center;
+}
+.stat-block::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--g-teal), var(--p-coral));
+}
+.stat-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.stat-val {
+  font-family: var(--font-head);
+  font-size: 32px; font-weight: 800;
+  color: var(--g-teal); letter-spacing: -0.03em; line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-val .unit { font-size: 16px; font-weight: 600; color: var(--muted); }
+.stat-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+/* ── PROBLEM / DIAGNOSIS ───────────── */
+.problem-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.problem-col { background: var(--card); border: 1px solid var(--border); padding: 32px 30px; }
+.problem-col:first-child { border-radius: var(--r-lg) 0 0 var(--r-lg); }
+.problem-col:last-child { border-radius: 0 var(--r-lg) var(--r-lg) 0; background: rgba(14,138,130,0.05); border-color: rgba(14,138,130,0.22); }
+.prob-head {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 20px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.prob-head.now { color: var(--p-coral); border-color: rgba(217,98,43,0.25); }
+.prob-head.good { color: var(--g-teal); border-color: rgba(14,138,130,0.22); }
+.metric-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px; gap: 12px;
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-key { color: var(--muted); }
+.metric-val { font-family: var(--font-mono); font-weight: 600; color: var(--text); text-align:right; }
+.metric-val.now { color: var(--p-coral); }
+.metric-val.good { color: var(--g-teal); }
+/* ── FUND HERO ─────────────────────── */
+.fund-hero {
+  background: linear-gradient(135deg, rgba(14,138,130,0.08), rgba(217,98,43,0.06));
+  border: 1px solid rgba(14,138,130,0.22);
+  border-radius: var(--r-xl);
+  padding: 40px 36px;
+  margin-bottom: 20px;
+  position: relative; overflow: hidden;
+}
+.fund-hero::after {
+  content: ''; position: absolute;
+  right: -40px; top: -40px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,138,130,0.10), transparent 70%);
+}
+.fund-amount {
+  font-family: var(--font-head);
+  font-size: 64px; font-weight: 800;
+  color: var(--g-teal); letter-spacing: -0.04em;
+  line-height: 1;
+}
+.fund-amount span { font-size: 26px; color: var(--muted); font-weight: 600; }
+.fund-sub { font-size: 15px; color: var(--muted); margin-top: 8px; line-height:1.7; }
+/* ── THEMES ────────────────────────── */
+.theme-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(90,50,20,0.05);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.theme-card:hover { border-color: var(--border-h); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(90,50,20,0.09); }
+.theme-top { padding: 24px 22px 22px; }
+.theme-num {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; color: var(--g-teal); margin-bottom: 8px;
+}
+.theme-title {
+  font-family: var(--font-head); font-size: 18px; font-weight: 700;
+  color: var(--text); margin-bottom: 10px; line-height: 1.25;
+}
+.theme-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.theme-sub { margin-top:14px; padding-top:12px; border-top:1px dashed var(--border); font-size:12px; color:var(--muted); }
+/* ── FLOW STEPS ────────────────────── */
+.flow-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.flow-step { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 28px 22px; position: relative; }
+.flow-step.active { border-color: rgba(14,138,130,0.25); background: rgba(14,138,130,0.05); }
+.flow-step-num {
+  font-family: var(--font-head); font-size: 52px; font-weight: 800;
+  color: rgba(90,50,20,0.07); line-height: 1;
+  position: absolute; top: 16px; right: 16px; letter-spacing: -0.04em;
+}
+.flow-step-tag { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g-teal); margin-bottom: 10px; }
+.flow-step-title { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.flow-step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+/* ── TIMELINE ──────────────────────── */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1.5px; background: linear-gradient(to bottom, var(--g-teal), var(--p-coral), transparent); }
+.tl-item { position: relative; margin-bottom: 32px; }
+.tl-item::before { content: ''; position: absolute; left: -38px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--g-teal); }
+.tl-month { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--g-teal); margin-bottom: 6px; }
+.tl-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.tl-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+/* ── TABLE ─────────────────────────── */
+.roi-table { width: 100%; border-collapse: collapse; }
+.roi-table thead tr { background: rgba(14,138,130,0.08); border-bottom: 1px solid rgba(14,138,130,0.18); }
+.roi-table th { padding: 12px 18px; font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g-teal); text-align: left; }
+.roi-table td { padding: 14px 18px; font-size: 14px; color: var(--text); border-bottom: 1px solid var(--border); vertical-align: top; }
+.roi-table td.val { font-family: var(--font-mono); font-weight: 600; color: var(--g-teal); }
+.roi-table tbody tr:last-child td { border-bottom: none; }
+.roi-table tbody tr:hover td { background: rgba(14,138,130,0.03); }
+/* ── FOOTER ────────────────────────── */
+footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 48px 32px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.footer-brand { font-family: var(--font-head); font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+.footer-brand span.g { color: var(--g-teal); }
+.footer-brand span.x { color: var(--muted); margin: 0 6px; }
+.footer-brand span.a { color: var(--p-coral); }
+.footer-text { font-size: 12px; color: var(--muted); line-height: 1.75; }
+.footer-heading { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g-teal); margin-bottom: 12px; }
+.footer-list { list-style: none; }
+.footer-list li { font-size: 13px; color: var(--muted); padding: 4px 0; }
+.footer-bottom { max-width: var(--max); margin: 32px auto 0; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.05em; flex-wrap:wrap; gap:8px; }
+/* ── BADGE ─────────────────────────── */
+.badge { display: inline-block; font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 99px; letter-spacing: 0.06em; text-transform: uppercase; }
+.badge-g { background: rgba(14,138,130,0.10); color: var(--g-teal); border: 1px solid rgba(14,138,130,0.25); }
+.badge-b { background: rgba(217,98,43,0.08); color: var(--p-coral); border: 1px solid rgba(217,98,43,0.22); }
+.badge-w { background: rgba(183,121,30,0.08); color: var(--warn); border: 1px solid rgba(183,121,30,0.2); }
+.badge-gray { background: rgba(90,50,20,0.05); color: var(--muted); border: 1px solid var(--border); }
+/* ── HIGHLIGHT BOX ─────────────────── */
+.hl-box { background: rgba(14,138,130,0.06); border-left: 3px solid var(--g-teal); border-radius: 0 var(--r-md) var(--r-md) 0; padding: 16px 20px; margin: 16px 0; }
+.hl-box p { font-size: 14px; color: var(--text); line-height: 1.7; }
+.hl-box strong { color: var(--g-teal); font-weight: 700; }
+.hl-box.coral { background: rgba(217,98,43,0.06); border-left-color: var(--p-coral); }
+.hl-box.coral strong { color: var(--p-coral); }
+/* ── INFO LIST ─────────────────────── */
+.info-list { list-style: none; }
+.info-list li { display: flex; justify-content: space-between; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 13px; gap: 12px; }
+.info-list li:last-child { border-bottom: none; }
+.info-key { color: var(--muted); min-width: 90px; }
+.info-val { color: var(--text); font-weight: 600; text-align: right; }
+.info-val.accent { color: var(--g-teal); }
+@media (max-width: 800px) {
+  .g2, .g3, .g-12, .problem-row, .flow-steps { grid-template-columns: 1fr; }
+  .hero { min-height: 78vh; }
+  .hero-title { font-size: 34px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .nav-logo { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="g">GRAVITY</span><span class="x">×</span><span class="a">팜젠사이언스</span>
+    </div>
+    <div class="nav-links">
+      <a href="#exec" class="nav-link active"><span class="num">01</span> Executive Summary</a>
+      <a href="#background" class="nav-link"><span class="num">02</span> 배경 및 필요성</a>
+      <a href="#proposal" class="nav-link"><span class="num">03</span> 핵심 제안</a>
+      <a href="#themes" class="nav-link"><span class="num">04</span> 투자 전략</a>
+      <a href="#tips" class="nav-link"><span class="num">05</span> TIPS 연계</a>
+      <a href="#roles" class="nav-link"><span class="num">06</span> 역할·프로그램</a>
+      <a href="#roi" class="nav-link"><span class="num">07</span> 기대 효과</a>
+      <a href="#timeline" class="nav-link"><span class="num">08</span> 다음 단계</a>
+    </div>
+  </div>
+</nav>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Open Innovation Fund Proposal · 2026</div>
+    <h1 class="hero-title">
+      팜젠사이언스 신성장 동력 확보를 위한<br>
+      <span class="accent">스마트헬스케어</span><br>
+      <span class="accent2">오픈이노베이션 펀드 조성 제안</span>
+    </h1>
+    <p class="hero-sub">
+      그래비티벤처스가 팜젠사이언스의 제조·인허가·유통 인프라와 스마트헬스케어·의료기기·화장품 딥테크 스타트업을 연결합니다.<br>
+      초기 100~300억 원 규모 펀드와 TIPS 연계 전략으로 민간·정부 자금을 함께 레버리지합니다.
+    </p>
+    <div class="hero-pills">
+      <span class="hero-pill">펀드 규모 100~300억 원 (1차)</span>
+      <span class="hero-pill">목표 IRR 20%+</span>
+      <span class="hero-pill">TIPS 선정률 목표 70%+</span>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+<!-- 01 EXEC SUMMARY -->
+<section id="exec" class="section">
+  <div class="sec-tag">01 Executive Summary</div>
+  <h2 class="sec-title">핵심 요약</h2>
+  <p class="sec-desc">팜젠사이언스의 제조·인허가·유통 역량과 헬스케어·뷰티 스타트업의 기술력을 결합해, 신성장 동력 확보와 실질적 오픈이노베이션을 동시에 달성합니다.</p>
+  <div style="height:36px"></div>
+  <div class="g-12">
+    <div class="card">
+      <div class="card-title coral">팜젠사이언스 강점</div>
+      <ul class="info-list">
+        <li><span class="info-key">제조 인프라</span><span class="info-val">GMP 제조·CMO, 인허가 로드맵 구축 역량</span></li>
+        <li><span class="info-key">진단 시너지</span><span class="info-val">진단 자회사(엑세스바이오 등) 기술 시너지</span></li>
+        <li><span class="info-key">유통망</span><span class="info-val">병원·약국 유통망 및 판매 채널 보유</span></li>
+        <li><span class="info-key">R&D 노하우</span><span class="info-val accent">소화기 신약·제네릭 임상·규제 노하우</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">제안 솔루션</div>
+      <div class="hl-box">
+        <p><strong>팜젠-그래비티 스마트헬스케어 오픈이노베이션 펀드 100~300억 원(1차)</strong>을 조성하여 스마트헬스케어·헬스기기·화장품 분야 초기 스타트업에 투자합니다. TIPS 연계로 정부 매칭 자금까지 함께 확보합니다.</p>
+      </div>
+      <div class="hl-box coral">
+        <p><strong style="color:var(--p-coral)">팜젠-그래비티 오픈이노베이션 프로그램</strong>을 통해 스타트업을 선발하고, 협업 가능 기업에 팜젠의 제조·인허가·유통 인프라를 실증 환경으로 제공합니다.</p>
+      </div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g-teal);margin-bottom:10px">기대 효과</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text)"><span style="color:var(--g-teal);font-weight:700;flex-shrink:0">①</span>팜젠 제조·유통 인프라 기반 오픈이노베이션 프로그램 수행</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text)"><span style="color:var(--g-teal);font-weight:700;flex-shrink:0">②</span>글로벌 확장 가능 헬스케어·뷰티 스타트업 발굴 및 투자</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text)"><span style="color:var(--g-teal);font-weight:700;flex-shrink:0">③</span>팜젠 신성장동력 확보 + 그래비티 OI 펀드 트랙레코드 강화</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 02 배경 및 필요성 -->
+<section id="background" class="section">
+  <div class="sec-tag">02 배경 및 협업 필요성</div>
+  <h2 class="sec-title">협업 배경 및 필요성</h2>
+  <p class="sec-desc">글로벌 스마트헬스케어·코스메슈티컬 시장은 빠르게 성장 중이나, 개별 스타트업이 인허가·제조·글로벌 진출을 단독으로 돌파하기는 어렵습니다.</p>
+  <div style="height:36px"></div>
+  <div class="problem-row" style="margin-bottom:20px">
+    <div class="problem-col">
+      <div class="prob-head now">시장 환경</div>
+      <div class="metric-row"><span class="metric-key">스마트헬스케어 시장 성장률</span><span class="metric-val now">연 10~15%</span></div>
+      <div class="metric-row"><span class="metric-key">K-뷰티·코스메슈티컬</span><span class="metric-val now">높은 글로벌 확장성</span></div>
+      <div class="metric-row"><span class="metric-key">초기 스타트업 현실</span><span class="metric-val now">인허가·제조·자금조달 단독 돌파 어려움</span></div>
+      <div style="margin-top:20px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px">주요 리스크</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="badge badge-b" style="width:fit-content">인허가·제조 장벽</div>
+          <div class="badge badge-b" style="width:fit-content">단독 글로벌 진출 리스크</div>
+          <div class="badge badge-b" style="width:fit-content">초기 자금 조달 한계</div>
+        </div>
+      </div>
+    </div>
+    <div class="problem-col">
+      <div class="prob-head good">해결 방향 — 실질적 오픈이노베이션</div>
+      <div class="metric-row"><span class="metric-key">인프라 결합</span><span class="metric-val good">GMP + 인허가 + 유통망</span></div>
+      <div class="metric-row"><span class="metric-key">육성 역량 결합</span><span class="metric-val good">PoC + 액셀러레이팅</span></div>
+      <div class="metric-row"><span class="metric-key">목표</span><span class="metric-val good">글로벌 확장 스타트업 조기 발굴</span></div>
+      <div class="metric-row"><span class="metric-key">그래비티 역량</span><span class="metric-val good">AC+VC 듀얼 라이선스 · TIPS 운용사</span></div>
+      <div class="metric-row"><span class="metric-key">기대 성과</span><span class="metric-val good">양사 신성장 동력 + 후속 펀드 확장</span></div>
+    </div>
+  </div>
+  <div style="background:#241A12;padding:20px 28px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;text-align:center">
+    <span style="font-family:var(--font-head);font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.01em;line-height:1.6">
+      전략적 필수 과제: <span style="color:#C9AFA0">'개별 스타트업의 단독 성장'</span>에서 <span style="color:#4BD4C3">'제약사-VC 공동 오픈이노베이션'</span>으로의 협업 구조 전환이 필요합니다.
+    </span>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 03 핵심 제안 -->
+<section id="proposal" class="section">
+  <div class="sec-tag">03 핵심 제안</div>
+  <h2 class="sec-title">팜젠-그래비티 스마트헬스케어 오픈이노베이션 펀드 (가칭)</h2>
+  <p class="sec-desc">정부 매칭(TIPS·모태펀드 등)을 적극 활용해 레버리지를 극대화하는 구조로 설계합니다.</p>
+  <div style="height:36px"></div>
+  <div style="position:relative;background:linear-gradient(135deg, #0E8A82 0%, #0A6961 60%, #D9622B 100%);border-radius:var(--r-xl);padding:32px 36px;margin-bottom:20px;box-shadow:0 8px 28px rgba(14,138,130,0.18);overflow:hidden">
+    <div style="position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;left:-40px;bottom:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.10), transparent 70%);pointer-events:none"></div>
+    <div style="position:relative;z-index:1">
+      <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:14px">★ Expected Impact · 기대효과</div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;font-family:var(--font-head);font-size:18px;font-weight:700;color:#fff;line-height:1.55;letter-spacing:-0.015em">
+        <span style="background:rgba(255,255,255,0.18);backdrop-filter:blur(6px);padding:10px 18px;border-radius:99px;border:1px solid rgba(255,255,255,0.3);white-space:nowrap">오픈이노베이션 펀드 + 육성 프로그램 조성</span>
+        <span style="font-size:22px;font-weight:800;color:#fff;opacity:0.85">→</span>
+        <span style="background:rgba(255,255,255,0.18);backdrop-filter:blur(6px);padding:10px 18px;border-radius:99px;border:1px solid rgba(255,255,255,0.3);white-space:nowrap">글로벌 확장 가능 헬스케어·뷰티 스타트업 발굴·투자</span>
+        <span style="font-size:22px;font-weight:800;color:#fff;opacity:0.85">→</span>
+        <span style="background:#fff;color:#0A6961;padding:10px 20px;border-radius:99px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,0.12);white-space:nowrap">팜젠 신성장동력 확보 + 그래비티 트랙레코드 강화</span>
+      </div>
+    </div>
+  </div>
+  <div class="fund-hero">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;position:relative;z-index:1">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--g-teal);margin-bottom:12px">팜젠-그래비티 스마트헬스케어 오픈이노베이션 펀드</div>
+        <div class="fund-amount">100~300억<span>원 (1차)</span></div>
+        <div class="fund-sub">7~10년 (투자기간 4~5년 + 회수기간) · Seed~Series A 중심 (일부 Pre-A·Series B)<br><strong style="color:var(--text)">기업당 5~30억 원</strong> 투자 (팔로우온 별도) · 목표 IRR 20% 이상, 멀티플 3배 이상<br>Exit: IPO·M&amp;A·라이선스 아웃</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:200px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">핵심 투자 분야</div>
+        <span class="badge badge-g">스마트헬스케어</span>
+        <span class="badge badge-b">헬스기기 (MedTech)</span>
+        <span class="badge badge-g">화장품 (코스메슈티컬)</span>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title">결성 구조</div>
+    <ul class="info-list">
+      <li><span class="info-key">GP</span><span class="info-val">그래비티벤처스 (또는 공동 GP 구조 검토)</span></li>
+      <li><span class="info-key">주요 LP</span><span class="info-val accent">팜젠사이언스 (전략적 LP)</span></li>
+      <li><span class="info-key">매칭 LP</span><span class="info-val">모태펀드·산업은행·기타 기관 LP 매칭 추진</span></li>
+      <li><span class="info-key">총 결성 규모</span><span class="info-val">100~300억 원 (1차), 성과에 따라 후속 확대</span></li>
+    </ul>
+  </div>
+  <div class="g2" style="margin-bottom:36px">
+    <div class="card">
+      <div class="card-title">투자의사결정 구조</div>
+      <ul class="info-list">
+        <li><span class="info-key">딜소싱</span><span class="info-val">그래비티벤처스 (GP)</span></li>
+        <li><span class="info-key">투자심사</span><span class="info-val">투자심의위원회 (양사 공동 참여)</span></li>
+        <li><span class="info-key">팜젠 역할</span><span class="info-val accent">전략적 의견 반영 + 시너지 점검</span></li>
+        <li><span class="info-key">운영 원칙</span><span class="info-val">전략적 적합성 확보 + 운용 독립성 동시 달성</span></li>
+      </ul>
+      <div class="hl-box" style="margin-top:14px">
+        <p>그래비티벤처스가 딜소싱·실사·투자심사 등 운용 전반을 주도하고, 분기별 포트폴리오 리뷰를 통해 팜젠과 시너지를 점검합니다. 이해충돌 방지 기준을 명확히 하고, 필요 시 의료·규제·뷰티 전문가로 구성된 별도 자문단을 운영합니다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title coral">차별화 육성 프로그램</div>
+      <ul class="info-list">
+        <li><span class="info-key">PoC &amp; 파일럿</span><span class="info-val">팜젠 시설·네트워크 기반 실증 검증</span></li>
+        <li><span class="info-key">공동 개발</span><span class="info-val">기능성 화장품·디바이스 OEM·ODM</span></li>
+        <li><span class="info-key">규제·인허가</span><span class="info-val">제약사 노하우 기반 패스트트랙 자문</span></li>
+        <li><span class="info-key">글로벌 액셀러레이팅</span><span class="info-val accent">해외 법인·파트너 네트워크 활용</span></li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-bottom:12px">
+    <div class="sec-tag" style="margin-bottom:8px">육성 프로그램 진행 단계</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <div class="flow-step-tag">Phase 01 · PoC &amp; 파일럿</div>
+        <div class="flow-step-title">실증 검증 및 선별</div>
+        <div class="flow-step-desc">팜젠 시설·네트워크를 활용한 실제 제품 검증 및 파일럿 판매로 협업 가능성을 검토합니다.</div>
+      </div>
+      <div class="flow-step active">
+        <div class="flow-step-num">2</div>
+        <div class="flow-step-tag">Phase 02 · 공동개발 &amp; 규제자문</div>
+        <div class="flow-step-title">OEM·ODM 및 인허가 패스트트랙</div>
+        <div class="flow-step-desc">기능성 화장품·디바이스 공동 개발과 제약사 노하우 기반 규제·인허가 자문을 병행합니다.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <div class="flow-step-tag">Phase 03 · Follow-on &amp; 글로벌</div>
+        <div class="flow-step-title">스케일업 및 해외 진출</div>
+        <div class="flow-step-desc">후속 투자 유치와 그래비티 해외 네트워크를 통한 글로벌 액셀러레이팅을 지원합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 04 투자전략 및 타겟분야 -->
+<section id="themes" class="section">
+  <div class="sec-tag">04 투자 전략 및 타겟 분야</div>
+  <h2 class="sec-title">핵심 Thesis: 제조·규제·유통 역량 + 딜플로우·액셀러레이팅</h2>
+  <p class="sec-desc">"제약사의 제조·규제·임상·유통 역량과 VC의 딜플로우·글로벌 액셀러레이팅을 결합하여, 글로벌 확장성이 검증된 초기 기업을 선별적으로 육성한다."</p>
+  <div style="height:36px"></div>
+  <div class="g3" style="margin-bottom:16px">
+    <div class="theme-card">
+      <div class="theme-top">
+        <div class="theme-num">THEME 01</div>
+        <div class="theme-title">스마트헬스케어</div>
+        <div class="theme-desc">AI 기반 디지털 치료제(DTx), 원격 모니터링, 개인화 건강관리 플랫폼</div>
+        <div class="theme-sub">서브테마: 웨어러블+데이터 기반 만성질환 관리 · AI 진단/예측 솔루션</div>
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-top">
+        <div class="theme-num">THEME 02</div>
+        <div class="theme-title">헬스기기 (MedTech)</div>
+        <div class="theme-desc">장기 연속 모니터링 디바이스(심전도·생체신호 등), 진단 센서·POC 기기</div>
+        <div class="theme-sub">서브테마: 심미·재생 의료기기 · 홈케어·뷰티 디바이스</div>
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-top">
+        <div class="theme-num">THEME 03</div>
+        <div class="theme-title">화장품 (코스메슈티컬)</div>
+        <div class="theme-desc">제약 성분·임상 데이터 기반 기능성 화장품, 피부 진단 AI + 맞춤형 스킨케어</div>
+        <div class="theme-sub">서브테마: 니들프리·재생·장벽 강화 등 고기능 제품</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">선별 기준</div>
+    <ul class="info-list">
+      <li><span class="info-key">글로벌 진입</span><span class="info-val">FDA/CE/PMDA 등 인허가 로드맵 또는 해외 파트너십</span></li>
+      <li><span class="info-key">팜젠 시너지</span><span class="info-val">제조 위탁, 공동 임상, 유통 연계, 성분 활용 등</span></li>
+      <li><span class="info-key">팀 역량</span><span class="info-val">창업팀의 실행력과 기술 차별성</span></li>
+      <li><span class="info-key">Exit 경로</span><span class="info-val">IPO, M&amp;A, 라이선스 아웃 등 명확한 경로</span></li>
+    </ul>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 05 TIPS 연계전략 -->
+<section id="tips" class="section">
+  <div class="sec-tag">05 TIPS 연계 전략</div>
+  <h2 class="sec-title">민간 자금 1에 정부 자금 3~4배 레버리지</h2>
+  <p class="sec-desc">그래비티벤처스는 TIPS 운용사(2025년 선정)로서, 2026년 개편된 TIPS 트랙을 펀드 투자와 자동 연계해 자금 규모를 확대합니다.</p>
+  <div style="height:36px"></div>
+  <div class="g3" style="margin-bottom:20px">
+    <div class="stat-block">
+      <div class="stat-label">일반트랙 민간 선투자</div>
+      <div class="stat-val">2억<span class="unit">+</span></div>
+      <div class="stat-sub">비수도권 1억 원 유지</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">정부 R&D 지원</div>
+      <div class="stat-val">8억<span class="unit">/2년</span></div>
+      <div class="stat-sub">일반트랙 최대</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">글로벌 TIPS</div>
+      <div class="stat-val">50~60억</div>
+      <div class="stat-sub">최대 지원 규모</div>
+    </div>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px;box-shadow:0 1px 4px rgba(90,50,20,0.05)">
+    <table class="roi-table">
+      <thead><tr><th>단계</th><th>내용</th><th>예상 자금 규모</th><th>주요 지원</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-g">Stage 1</span></td><td>OI 펀드 투자 + TIPS 일반트랙</td><td class="val">민간 2억 + 정부 8억 = 약 10억+</td><td>R&D + 사업화</td></tr>
+        <tr><td><span class="badge badge-b">Stage 2</span></td><td>딥테크/스케일업 TIPS + 펀드 팔로우온</td><td class="val">후속 R&D 15~30억 + 추가 투자</td><td>양산·고도화</td></tr>
+        <tr><td><span class="badge badge-gray">Stage 3</span></td><td>글로벌 TIPS + 해외 네트워크</td><td class="val">최대 50~60억 + 해외마케팅</td><td>해외 진출·파트너링</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title">딜 선별 및 팜젠 시너지 활용</div>
+      <ul class="info-list">
+        <li><span class="info-key">기술 혁신성</span><span class="info-val">AI·디지털헬스케어·웨어러블 센서, 업력 7년 이내 가점</span></li>
+        <li><span class="info-key">화장품 포지셔닝</span><span class="info-val">코스메슈티컬·기능성·바이오 기반으로 기술성 평가 통과율 제고</span></li>
+        <li><span class="info-key">팜젠 데이터 활용</span><span class="info-val accent">PoC·인허가 로드맵·GMP 제조 가능성으로 선정률 제고</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title coral">운영 프로세스</div>
+      <ul class="info-list">
+        <li><span class="info-key">심의</span><span class="info-val">월간/분기 공동 투자심의위원회 TIPS 적합도 스크리닝</span></li>
+        <li><span class="info-key">준비 프로그램</span><span class="info-val">TIPS 사업계획서 워크숍 + IR 코칭</span></li>
+        <li><span class="info-key">전담 체계</span><span class="info-val">그래비티 TIPS 매니저 + 팜젠 기술자문단</span></li>
+        <li><span class="info-key">지역 할당</span><span class="info-val accent">충남·천안 거점 비수도권 기업 우선 발굴</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="hl-box coral">
+    <p><strong>Dual-track 리스크 관리</strong> — TIPS 미선정 시에도 OI 펀드 자체 육성(팜젠 PoC·제조·유통 지원)으로 보완. TIPS 선정률 목표 <strong>70% 이상</strong>.</p>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 06 역할분담 및 프로그램 -->
+<section id="roles" class="section">
+  <div class="sec-tag">06 역할 분담 및 육성 프로그램</div>
+  <h2 class="sec-title">양사 시너지 구조</h2>
+  <p class="sec-desc">제약사의 인프라와 VC의 육성 역량이 맞물려 실질적인 오픈이노베이션이 작동하도록 설계했습니다.</p>
+  <div style="height:36px"></div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title coral">팜젠사이언스 — 전략적 파트너 &amp; 주요 LP</div>
+      <ul class="info-list">
+        <li><span class="info-key">제조 지원</span><span class="info-val">GMP 제조·CMO 지원, 제품화 가속</span></li>
+        <li><span class="info-key">규제 자문</span><span class="info-val">인허가·임상·규제 컨설팅</span></li>
+        <li><span class="info-key">유통 연계</span><span class="info-val">병원·약국·유통망 파일럿 및 판매 연계</span></li>
+        <li><span class="info-key">기술 시너지</span><span class="info-val">진단 자회사(엑세스바이오 등)와의 협업</span></li>
+        <li><span class="info-key">R&D</span><span class="info-val">공동 R&D 및 오픈이노베이션 PoC 제공</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">그래비티벤처스 — GP &amp; 육성 주체</div>
+      <ul class="info-list">
+        <li><span class="info-key">딜소싱</span><span class="info-val">딜소싱 및 투자 심사</span></li>
+        <li><span class="info-key">액셀러레이팅</span><span class="info-val">멘토링, IR, 글로벌 진출 프로그램 운영</span></li>
+        <li><span class="info-key">정책 연계</span><span class="info-val">TIPS·정부 지원사업 연계</span></li>
+        <li><span class="info-key">후속 투자</span><span class="info-val">팔로우온 투자 및 후속 라운드 리드</span></li>
+        <li><span class="info-key">글로벌 네트워크</span><span class="info-val">동남아·중동·북미 등 해외 파트너링</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="card"><div class="card-title" style="font-size:14px">PoC &amp; 파일럿</div><p style="font-size:13px;color:var(--muted)">팜젠 시설·네트워크를 활용한 실제 제품 검증 및 파일럿 판매</p></div>
+    <div class="card"><div class="card-title coral" style="font-size:14px">공동 개발 / OEM·ODM</div><p style="font-size:13px;color:var(--muted)">기능성 화장품·디바이스 공동 개발</p></div>
+    <div class="card"><div class="card-title" style="font-size:14px">규제·인허가 패스트트랙</div><p style="font-size:13px;color:var(--muted)">제약사 노하우 기반 자문</p></div>
+    <div class="card"><div class="card-title coral" style="font-size:14px">글로벌 액셀러레이팅</div><p style="font-size:13px;color:var(--muted)">해외 법인·파트너 네트워크를 통한 IR·유통·파트너십 지원</p></div>
+    <div class="card"><div class="card-title" style="font-size:14px">Follow-on &amp; 스케일업</div><p style="font-size:13px;color:var(--muted)">후속 투자 유치 지원 및 경영 자문</p></div>
+    <div class="card"><div class="card-title coral" style="font-size:14px">정기 OI 데이</div><p style="font-size:13px;color:var(--muted)">양사 + 포트폴리오사 교류 및 신규 딜 발굴</p></div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 07 기대효과 -->
+<section id="roi" class="section">
+  <div class="sec-tag">07 기대 효과</div>
+  <h2 class="sec-title">양사 및 포트폴리오사가 얻는 것</h2>
+  <p class="sec-desc">단기 재무 성과를 넘어, 신성장동력과 실질적 성장 인프라를 함께 확보합니다.</p>
+  <div style="height:36px"></div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px;box-shadow:0 1px 4px rgba(90,50,20,0.05)">
+    <table class="roi-table">
+      <thead><tr><th>구분</th><th>구체적 효과</th><th>정량적 목표</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-b">팜젠사이언스</span></td>
+          <td>신성장 동력 확보(스마트헬스케어·코스메슈티컬)<br><span style="font-size:12px;color:var(--muted)">저비용·고효율 오픈이노베이션 실행, 포트폴리오사 전략적 제휴·인수 옵션</span></td>
+          <td class="val">신규 파이프라인 확보</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-g">그래비티벤처스</span></td>
+          <td>제약사 도메인 전문성 결합으로 투자 성공률 제고<br><span style="font-size:12px;color:var(--muted)">차별화된 OI 펀드 트랙레코드, 후속 펀드·LP 유치 경쟁력 강화</span></td>
+          <td class="val">IRR 20%+</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-gray">스타트업</span></td>
+          <td>단순 자금 이상의 실질적 성장 인프라 제공<br><span style="font-size:12px;color:var(--muted)">글로벌 진출 가속화</span></td>
+          <td class="val">TIPS 연계 최대 60억 규모</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="g3">
+    <div class="stat-block">
+      <div class="stat-label">목표 수익률</div>
+      <div class="stat-val">20%<span class="unit">+</span></div>
+      <div class="stat-sub">IRR 목표 · 멀티플 3배 이상</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">TIPS 선정률</div>
+      <div class="stat-val">70%<span class="unit">+</span></div>
+      <div class="stat-sub">목표 선정률</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-label">민관 자금 레버리지</div>
+      <div class="stat-val">3~4<span class="unit">배</span></div>
+      <div class="stat-sub">민간 1 : 정부 3~4</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<!-- 08 다음 단계 -->
+<section id="timeline" class="section">
+  <div class="sec-tag">08 제안 조건 및 다음 단계</div>
+  <h2 class="sec-title">추진 로드맵</h2>
+  <p class="sec-desc">MOU 체결부터 TIPS 연계 투자 집행까지의 단계별 계획입니다.</p>
+  <div style="height:36px"></div>
+  <div class="g2">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-month">1개월 차</div>
+        <div class="tl-title">MOU 체결 + 펀드 결성 준비</div>
+        <div class="tl-desc">업무협약 체결, 펀드 구조 확정 및 LP 모집 준비 착수.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">2~3개월 차</div>
+        <div class="tl-title">펀드 조성 및 1차 딜소싱</div>
+        <div class="tl-desc">모태펀드·기관 LP 매칭 추진, 1차 타겟 파이프라인 발굴.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">4~6개월 차</div>
+        <div class="tl-title">투자 집행 및 TIPS 연계</div>
+        <div class="tl-desc">1차 투자 집행, TIPS 추천 및 사업계획서 공동 작성 지원.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">다음 단계</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9">
+          <strong style="color:var(--g-teal)">① 실무진 미팅</strong> 펀드 규모·구조·역할 구체화<br>
+          <strong style="color:var(--g-teal)">② 가이드라인</strong> 투자 가이드라인 및 시너지 체크리스트 공동 작성<br>
+          <strong style="color:var(--g-teal)">③ 파이프라인</strong> 1차 타겟 딜 공유 및 파일럿 투자 검토<br>
+          <strong style="color:var(--g-teal)">④ 외부 LP</strong> 필요 시 모태펀드·산업은행 등 공동 추진
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span class="g">GRAVITY</span><span class="x">×</span><span class="a">팜젠사이언스</span></div>
+      <div class="footer-text" style="max-width:320px">본 제안서는 주식회사 그래비티벤처스가 팜젠사이언스를 대상으로 작성한 신성장동력 확보를 위한 오픈이노베이션 펀드 및 프로그램 조성 제안서입니다. 본 문서에 포함된 수치 및 예측은 현 시점 정보에 기반하며 실제 결과와 다를 수 있습니다.</div>
+    </div>
+    <div>
+      <div class="footer-heading">제안 개요</div>
+      <ul class="footer-list">
+        <li>제안 주체: 주식회사 그래비티벤처스</li>
+        <li>제안 대상: 팜젠사이언스</li>
+        <li>제안 시기: 2026년 7월 (초안)</li>
+        <li>펀드 규모: 100~300억 원 (1차)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">핵심 지표</div>
+      <ul class="footer-list">
+        <li>목표 IRR: 20% 이상</li>
+        <li>TIPS 선정률 목표: 70% 이상</li>
+        <li>투자 한도: 기업당 5~30억 원</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Gravity Ventures Inc. — Confidential</span>
+    <span>팜젠사이언스 × Gravity Open Innovation Fund Proposal (Draft)</span>
+  </div>
+</footer>
+<script>
+const sections = document.querySelectorAll('.section');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.06 });
+sections.forEach(s => io.observe(s));
+setTimeout(() => {
+  sections.forEach(s => { if (s.getBoundingClientRect().top < window.innerHeight) s.classList.add('vis'); });
+}, 80);
+const navLinks = document.querySelectorAll('.nav-link');
+const navSections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  navSections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) cur = sec.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+}, { passive: true });
+</script>
+</body>
+</html>
